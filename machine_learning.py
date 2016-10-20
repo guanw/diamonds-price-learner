@@ -45,6 +45,7 @@ def test_model(test_file, model_name):
     print res
 
 if __name__ == "__main__":
-    file_name = "./data.csv"
-    model_name = 'linear.model'
+    file_name = "./data-more.csv"
+    model_name = 'linear-better.model'
+    # linear_regression_train(file_name, model_name)
     test_model('test.csv', model_name)

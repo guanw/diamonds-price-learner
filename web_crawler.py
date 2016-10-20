@@ -114,7 +114,7 @@ def store_file(div, shape, pair):
 def copy_list_data(driver):
     page_source = driver.page_source
     soup = BeautifulSoup(page_source)
-    div = soup.find('div', {"class": "diamond-grid"})
+    div = soup.find('div', {"class": "diamond-grid-container"})
     # print div
     return div
 

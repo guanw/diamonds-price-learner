@@ -19,7 +19,7 @@ def getAttribute(soup, attribute):
     elif attribute == "clarity":
         interested_div = soup.findAll("span", {"class": "clarity cell clarity cell"})
     elif attribute == "price":
-        interested_div = soup.findAll("span", {"class": "pricePerCarat cell advanced pricePerCarat cell advanced"})
+        interested_div = soup.findAll("a", {"class": "chevron price cell fixed price cell fixed"})
     attribute_res = []
     for item in interested_div:
         attribute_res.append(item.text)
@@ -97,8 +97,8 @@ def compose_complex(soup):
     return complex_list
 
 def clear_data():
-    file_folders = ['Emerald','Oval','Round']
-    with open('data.csv','wb') as csv_file:
+    file_folders = ['web-crawler/Emerald','web-crawler/Oval','web-crawler/Round']
+    with open('data-more.csv','wb') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         for folder in file_folders:
             file_names = os.listdir("./html/" + folder)
@@ -106,7 +106,7 @@ def clear_data():
                 html = open("./html/" + folder + "/" + file, "r").read()
                 soup = BeautifulSoup(html)
                 complex_list = compose_complex(soup)
-                complex_list = filter_price_range(file, complex_list)
+                # complex_list = filter_price_range(file, complex_list)
 
                 for complex in complex_list:
                     writer.writerow([complex.shape, str(complex.carat), complex.cut, complex.color, complex.clarity, str(complex.price)])
